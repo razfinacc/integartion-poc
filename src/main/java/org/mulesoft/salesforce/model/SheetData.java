@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 public class SheetData {
 
-    private String contractId;
-    private String forecastSummary;
+    private String contractNo;
+    private String forecastCurrency;
     private String propertyDescription;
     private String productTypeDescription;
     private String territory;
