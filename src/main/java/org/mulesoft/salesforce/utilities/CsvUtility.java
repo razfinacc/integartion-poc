@@ -27,7 +27,7 @@ public class CsvUtility {
             allLines = Files.readAllLines(new File(csvFilePath).toPath());
             log.info("Csv file is read from the path: {} on {}", csvFilePath, LocalDateTime.now());
         } catch (IOException e) {
-            log.error("unable to read csv file in location: {}, stack trace follows {}", csvFilePath, e.getStackTrace());
+            log.error("Unable to read from CSV file: ", e);
         }
     }
 
@@ -110,9 +110,9 @@ public class CsvUtility {
      */
     private static double getNumericCellData(String value) {
         try {
-            return Double.parseDouble(value.replace("%",""));
+            return Double.parseDouble(value.replace("%", ""));
         } catch (NumberFormatException e) {
-            log.error("{}: cannot be converted to a Numeric value: {}", value, e.getStackTrace());
+            log.error("{}: can't be converted to a Numeric: {}, stack trace: {}", value, e.fillInStackTrace(), e.getStackTrace());
         }
         return 0.0;
     }

@@ -16,7 +16,7 @@ public class Utility {
         try (InputStream inputStream = Utility.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
             properties.load(inputStream);
         } catch (IOException e) {
-            log.error("Unable to load {} file: {}", PROPERTIES_FILE, e.getStackTrace());
+            log.error("Unable to read from PROPERTIES file: ", e);
         }
         return properties;
     }
