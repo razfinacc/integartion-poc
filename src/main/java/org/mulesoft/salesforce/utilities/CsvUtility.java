@@ -110,7 +110,7 @@ public class CsvUtility {
      */
     private static double getNumericCellData(String value) {
         try {
-            return Double.parseDouble(value);
+            return Double.parseDouble(value.replace("%",""));
         } catch (NumberFormatException e) {
             log.error("{}: cannot be converted to a Numeric value: {}", value, e.getStackTrace());
         }

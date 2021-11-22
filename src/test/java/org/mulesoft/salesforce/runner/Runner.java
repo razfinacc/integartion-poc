@@ -5,7 +5,9 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty", "html:target/cucumber.html", "junit:target/junit", "json:target/json.json"},
+@CucumberOptions(plugin = {"pretty", "json:target/json.json",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+},
         tags = "@SmokeApiTest",
         features = {"classpath:features"},
         glue = {"org.mulesoft.salesforce.stepdefinitions"}

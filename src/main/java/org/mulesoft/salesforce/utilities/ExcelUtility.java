@@ -134,7 +134,7 @@ public class ExcelUtility {
         try {
             return cell.getNumericCellValue();
         } catch (IllegalStateException e) {
-            log.error("no numeric value present in this cell: {}", e.getStackTrace());
+            log.error("No numeric value present in this cell: {}", e.getStackTrace());
         }
         return 0.0;
     }
