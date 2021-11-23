@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Slf4j
-public class CsvUtility {
+public class CsvUtil {
 
     private static List<String> allLines = new ArrayList<>();
 

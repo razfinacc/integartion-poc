@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class ExcelUtility {
+public class ExcelUtil {
 
     private static FileInputStream fileInputStream = null;
     private static Workbook workbook = null;
