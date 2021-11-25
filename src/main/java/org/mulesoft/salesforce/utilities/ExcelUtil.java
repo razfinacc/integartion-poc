@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class ExcelUtility {
+public class ExcelUtil {
 
     private static FileInputStream fileInputStream = null;
     private static Workbook workbook = null;
@@ -36,7 +36,7 @@ public class ExcelUtility {
             workbook = new XSSFWorkbook(fileInputStream);
             log.info("Excel file is read from the path: {} on {}", excelFilePath, LocalDateTime.now());
         } catch (IOException e) {
-            log.error("no file found at this location: {} or stack trace follows: {}", excelFilePath, e.getStackTrace());
+            log.error("Unable to read from EXCEL file: ", e);
         }
     }
 
@@ -109,6 +109,7 @@ public class ExcelUtility {
             workbook.close();
             fileInputStream.close();
         } catch (IOException e) {
+            log.error("exception in closing input stream/workbook", e);
             e.printStackTrace();
         }
         return sheetDataList.stream().filter(Objects::nonNull).collect(Collectors.toList());
@@ -134,7 +135,7 @@ public class ExcelUtility {
         try {
             return cell.getNumericCellValue();
         } catch (IllegalStateException e) {
-            log.error("no numeric value present in this cell: {}", e.getStackTrace());
+            log.error("cell value can't be converted to a Numeric: {}, stack trace: {}", e.fillInStackTrace(), e.getStackTrace());
         }
         return 0.0;
     }
