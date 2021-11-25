@@ -9,3 +9,7 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
   Scenario: Connect to FTP to read csv file
     Given read excel file data
     And read csv file data
+
+  @SmokeApiTest
+  Scenario: Connect to FTP to read database data
+    Given read database data
