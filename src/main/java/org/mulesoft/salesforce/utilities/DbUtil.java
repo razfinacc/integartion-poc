@@ -38,7 +38,7 @@ public class DbUtil {
             entityTransaction = entityManager.getTransaction();
             entityTransaction.begin();
             person = entityManager.find(Person.class, id);
-            ReportUtil.addTestStepLog("Person retrieved from db with Id: " + id + "{} is :" + person.toString());
+            ReportUtil.addTestStepLog("Person retrieved from db with Id: " + id + " is :" + person);
             entityTransaction.commit();
         }
         return person;
@@ -50,7 +50,7 @@ public class DbUtil {
             entityTransaction = entityManager.getTransaction();
             entityTransaction.begin();
             persons.addAll(entityManager.createQuery("from Person", Person.class).getResultList());
-            ReportUtil.addTestStepLog("Persons retrieved from db: " + persons.toString());
+            ReportUtil.addTestStepLog("Persons retrieved from db: " + persons);
             entityTransaction.commit();
         }
         return persons;
