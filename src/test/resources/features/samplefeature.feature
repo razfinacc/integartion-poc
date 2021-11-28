@@ -7,5 +7,10 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
 
   @SmokeApiTest
   Scenario: Connect to FTP to read csv file
-    Given read excel file data
-    And read csv file data
+    Given read csv file data
+
+  @SmokeApiTest
+  Scenario: Platform event status
+    Given print CP_Forecast__c.Mulesoft_Event_Received__c
+    And print CP_Forecast__c.Mulesoft_Processed_On__c
+    And print CP_Forecast__c.Mulesoft_Processed_Success__c
