@@ -2,12 +2,13 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
 
   # Mulesoft - salesforce integration - Use case 1
   @SmokeApiTest
-  Scenario: Connect to FTP to read excel file
+  Scenario: Connect to Mulesoft to read excel file
     Given read excel file data
 
   @SmokeApiTest
-  Scenario: Connect to FTP to read csv file
-    Given read csv file data
+  Scenario: Connect to Mulesoft to read csv file
+    Given read source csv file data
+    And read target csv file data
 
   @SmokeApiTest
   Scenario: Platform event status

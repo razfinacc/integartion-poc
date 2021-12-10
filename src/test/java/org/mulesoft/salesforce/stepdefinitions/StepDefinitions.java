@@ -25,13 +25,23 @@ public class StepDefinitions {
         data.stream().forEach(System.out::println);
     }
 
-    @Given("read csv file data")
-    public void readCsvFileData() {
-        String csvFilePath = Util.properties.getProperty("csv_file_path");
+    @Given("read source csv file data")
+    public void readSourceCsvFileData() {
+        String csvFilePath = Util.properties.getProperty("source_csv_file_path");
         CsvUtil.getCsvHandle(csvFilePath);
         List<SheetData> data = CsvUtil.getCsvData();
         data.stream().forEach(System.out::println);
-        ReportUtil.addTestStepLog("Total records read from CSV file: " + data.size());
+        ReportUtil.addTestStepLog("Total records read from source CSV file: " + data.size());
+        Assert.assertEquals(1, 1);
+    }
+
+    @Given("read target csv file data")
+    public void readTargetCsvFileData() {
+        String csvFilePath = Util.properties.getProperty("target_csv_file_path");
+        CsvUtil.getCsvHandle(csvFilePath);
+        List<SheetData> data = CsvUtil.getCsvData();
+        data.stream().forEach(System.out::println);
+        ReportUtil.addTestStepLog("Total records read from target CSV file: " + data.size());
         Assert.assertEquals(1, 1);
     }
 
