@@ -3,6 +3,7 @@ package org.mulesoft.salesforce.stepdefinitions;
 import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
+import org.mulesoft.salesforce.Session.Session;
 import org.mulesoft.salesforce.model.SheetData;
 import org.mulesoft.salesforce.utilities.CsvUtil;
 import org.mulesoft.salesforce.utilities.ExcelUtil;
@@ -30,6 +31,7 @@ public class StepDefinitions {
         String csvFilePath = Util.properties.getProperty("source_csv_file_path");
         CsvUtil.getCsvHandle(csvFilePath);
         List<SheetData> data = CsvUtil.getCsvData();
+        Session.sourceRecordsCount = data.size();
         data.stream().forEach(System.out::println);
         ReportUtil.addTestStepLog("Total records read from source CSV file: " + data.size());
         Assert.assertEquals(1, 1);
@@ -40,6 +42,7 @@ public class StepDefinitions {
         String csvFilePath = Util.properties.getProperty("target_csv_file_path");
         CsvUtil.getCsvHandle(csvFilePath);
         List<SheetData> data = CsvUtil.getCsvData();
+        Session.targetRecordsCount = data.size();
         data.stream().forEach(System.out::println);
         ReportUtil.addTestStepLog("Total records read from target CSV file: " + data.size());
         ReportUtil.addTestStepLog("First records created timestamp "+data.stream().findFirst().get().getCreatedDate());
@@ -48,6 +51,13 @@ public class StepDefinitions {
 //        ReportUtil.addTestStepLog(data.get(data.size() - 1).toString());
 //        data.stream().forEach(it -> ReportUtil.addTestStepLog(it.toString()));
         Assert.assertEquals(1, 1);
+    }
+
+    @Given("^validate source and target csv file records count$")
+    public void validateSourceAndTargetRecordsCount(){
+        ReportUtil.addTestStepLog("Source records count: " + Session.sourceRecordsCount);
+        ReportUtil.addTestStepLog("Target records count: " + Session.targetRecordsCount);
+        Assert.assertEquals("Source and target records count mismatch", Session.sourceRecordsCount, Session.targetRecordsCount);
     }
 
     @Given("print CP_Forecast__c.Mulesoft_Event_Received__c")
