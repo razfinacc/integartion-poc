@@ -42,6 +42,11 @@ public class StepDefinitions {
         List<SheetData> data = CsvUtil.getCsvData();
         data.stream().forEach(System.out::println);
         ReportUtil.addTestStepLog("Total records read from target CSV file: " + data.size());
+        ReportUtil.addTestStepLog("First records created timestamp "+data.stream().findFirst().get().getCreatedDate());
+        ReportUtil.addTestStepLog("Last record created timestamp "+data.get(data.size() - 1).getCreatedDate());
+//        ReportUtil.addTestStepLog(data.stream().findFirst().toString());
+//        ReportUtil.addTestStepLog(data.get(data.size() - 1).toString());
+//        data.stream().forEach(it -> ReportUtil.addTestStepLog(it.toString()));
         Assert.assertEquals(1, 1);
     }
 

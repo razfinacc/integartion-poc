@@ -85,6 +85,12 @@ public class CsvUtil {
                             case 12:
                                 sheetData.setTotalAmount(getNumericCellData(rowValues[index]));
                                 break;
+                            case 13:
+                                sheetData.setCreatedDate(getStringCellData(rowValues[index]));
+                                break;
+                            case 14:
+                                sheetData.setLastModifiedDate(getStringCellData(rowValues[index]));
+                                break;
                         }
                     }
                     sheetDataList.add(sheetData);

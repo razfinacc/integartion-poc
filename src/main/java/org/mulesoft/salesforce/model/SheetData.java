@@ -22,4 +22,6 @@ public class SheetData {
     private String q3;
     private String q4;
     private double totalAmount;
+    private String createdDate;
+    private String lastModifiedDate;
 }
