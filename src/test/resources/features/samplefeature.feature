@@ -9,10 +9,13 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
   Scenario: Connect to Mulesoft to read source csv file
     Given read source csv file data
 
-
   @SmokeApiTest
   Scenario: Connect to Salesforce to read target csv file
     Given read target csv file data
+
+  @SmokeApiTest
+  Scenario: Connect to Salesforce to validate source and target data records count
+    Given validate source and target csv file records count
 
   @SmokeApiTest
   Scenario: Platform event status
