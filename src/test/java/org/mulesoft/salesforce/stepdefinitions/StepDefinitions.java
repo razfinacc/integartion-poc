@@ -4,8 +4,10 @@ import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.mulesoft.salesforce.Session.Session;
+import org.mulesoft.salesforce.model.Person;
 import org.mulesoft.salesforce.model.SheetData;
 import org.mulesoft.salesforce.utilities.CsvUtil;
+import org.mulesoft.salesforce.utilities.DbUtil;
 import org.mulesoft.salesforce.utilities.ExcelUtil;
 import org.mulesoft.salesforce.utilities.ReportUtil;
 import org.mulesoft.salesforce.utilities.Util;
@@ -75,5 +77,27 @@ public class StepDefinitions {
     public void MulesoftProcessedSuccess() {
         ReportUtil.addTestStepLog("CP_Forecast__c.Mulesoft_Processed_Success__c: " + false);
         Assert.assertTrue(false);
+    }
+
+    @Given("read database data")
+    public void readDatabaseData() {
+        DbUtil.openDbConnection();
+        Person person1 = new Person();
+        person1.setFirstName("FirstName1");
+        person1.setLastName("LastName1");
+        person1.setAge(40);
+        DbUtil.savePerson(person1);
+
+        Person person2 = new Person();
+        person2.setFirstName("FirstName2");
+        person2.setLastName("LastName2");
+        person2.setAge(50);
+        DbUtil.savePerson(person2);
+
+        DbUtil.getPersons();
+        DbUtil.getPerson(1);
+        DbUtil.removePerson(person1);
+        DbUtil.getPersons();
+        DbUtil.closeConnection();
     }
 }
