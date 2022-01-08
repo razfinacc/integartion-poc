@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.stepdefinitions;
+package org.mulesoft.salesforce.stepdefinitions.api;
 
 import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;

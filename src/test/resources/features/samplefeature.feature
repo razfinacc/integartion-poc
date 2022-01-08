@@ -26,3 +26,9 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
   @SmokeApiTest
   Scenario: Connect to FTP to read database data
     Given read database data
+
+  @BrowserAutomation
+  Scenario: Browser automation
+    Given open browser with url "https://wb--cptechup.my.salesforce.com/"
+    And login with "uname" and "pswd"
+    Then quit driver
