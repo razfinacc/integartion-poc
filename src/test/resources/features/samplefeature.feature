@@ -28,7 +28,13 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
     Given read database data
 
   @BrowserAutomation
-  Scenario: Browser automation
+  Scenario Outline: Browser automation
     Given open browser with url "https://wb--cptechup.my.salesforce.com/"
-    And login with "fatima.maniyar@mulesoft.com.cptechup" and "Climacool1610@!"
+    And login with "<uName>" and "<pswd>"
+    And login to workbench with url "https://workbench.developerforce.com/query.php"
+    And execute query "<query>" in "<envSelection>" environment
+    And download query result
     Then quit driver
+    Examples:
+      | uName                                | pswd            | envSelection | query |
+      | fatima.maniyar@mulesoft.com.cptechup | Climacool1610@! | Sandbox      |       |

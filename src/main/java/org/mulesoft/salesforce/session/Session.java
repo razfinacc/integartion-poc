@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.Session;
+package org.mulesoft.salesforce.session;
 
 import lombok.*;
 

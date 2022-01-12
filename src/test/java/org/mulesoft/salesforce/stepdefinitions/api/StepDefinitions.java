@@ -3,7 +3,7 @@ package org.mulesoft.salesforce.stepdefinitions.api;
 import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.mulesoft.salesforce.Session.Session;
+import org.mulesoft.salesforce.session.Session;
 import org.mulesoft.salesforce.model.Person;
 import org.mulesoft.salesforce.model.SheetData;
 import org.mulesoft.salesforce.utilities.CsvUtil;
