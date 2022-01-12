@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.ui.page.objects;
+package org.mulesoft.salesforce.ui.page.objects.workbench;
 
 import org.mulesoft.salesforce.ui.util.WebUtil;
 import org.openqa.selenium.WebDriver;
