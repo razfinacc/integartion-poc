@@ -30,5 +30,5 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
   @BrowserAutomation
   Scenario: Browser automation
     Given open browser with url "https://wb--cptechup.my.salesforce.com/"
-    And login with "uname" and "pswd"
+    And login with "fatima.maniyar@mulesoft.com.cptechup" and "Climacool1610@!"
     Then quit driver
