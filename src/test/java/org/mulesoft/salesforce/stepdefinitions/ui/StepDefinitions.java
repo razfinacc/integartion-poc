@@ -62,14 +62,14 @@ public class StepDefinitions {
         workbenchHomePage.checkTermsAndConditions();
         Thread.sleep(2000);
         workbenchHomePage.clickLoginWithSalesforceButton();
-        Thread.sleep(10000);
+        Thread.sleep(90000);
         workbenchSoqlQueryPage = new WorkbenchSoqlQueryPage(browser);
         workbenchSoqlQueryPage.clickExportCsvRadioButton();
         Thread.sleep(2000);
         workbenchSoqlQueryPage.enterQueryInTextarea(query);
         Thread.sleep(2000);
         workbenchSoqlQueryPage.clickQueryButton();
-        Thread.sleep(10000);
+        Thread.sleep(20000);
     }
 
     @And("download query result")
