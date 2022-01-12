@@ -5,9 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.extern.slf4j.Slf4j;
 import org.mulesoft.salesforce.ui.automation.driver.Driver;
-import org.mulesoft.salesforce.ui.automation.page.objects.HomePage;
 import org.mulesoft.salesforce.ui.automation.page.objects.LoginPage;
-import org.mulesoft.salesforce.ui.automation.page.objects.VerificationPage;
+import org.mulesoft.salesforce.ui.page.objects.HomePage;
+import org.mulesoft.salesforce.ui.page.objects.VerificationPage;
+import org.mulesoft.salesforce.ui.page.objects.WorkbenchHomePage;
 import org.openqa.selenium.WebDriver;
 
 @Slf4j
@@ -17,6 +18,7 @@ public class StepDefinitions {
     private LoginPage loginPage;
     private VerificationPage verificationPage;
     private HomePage homePage;
+    private WorkbenchHomePage workbenchHomePage;
 
     @Given("open browser with url {string}")
     public void openBrowserWithUrl(String url) {
@@ -26,8 +28,8 @@ public class StepDefinitions {
         loginPage = new LoginPage(browser);
     }
 
-    @Given("login with {string} and {string}")
-    public void enterUserName(String uName, String pswd) throws InterruptedException {
+    @And("login with {string} and {string}")
+    public void loginToSaleForce(String uName, String pswd) throws InterruptedException {
         loginPage.enterUserName(uName);
         Thread.sleep(2000);
         loginPage.enterPassword(pswd);
@@ -37,12 +39,22 @@ public class StepDefinitions {
         verificationPage = new VerificationPage(browser);
         verificationPage.clickVerify();
         Thread.sleep(10000);
-//        homePage = new HomePage(browser);
-//        homePage.clickForecasts();
-//        Thread.sleep(60000);
-//        browser.manage().window().
+        /*homePage = new HomePage(browser);
+        homePage.clickForecasts();
+        Thread.sleep(60000);*/
+    }
+
+    @And("login to workbench with environment selection as {string}")
+    public void loginToWorkbench(String envSelection) throws InterruptedException {
         browser.get("https://workbench.developerforce.com/query.php");
         Thread.sleep(20000);
+        workbenchHomePage = new WorkbenchHomePage(browser);
+        workbenchHomePage.selectEnvironment(envSelection);
+        Thread.sleep(3000);
+        workbenchHomePage.checkTermsAndConditions();
+        Thread.sleep(3000);
+        workbenchHomePage.clickLoginWithSalesforceButton();
+        Thread.sleep(10000);
     }
 
     @Then("quit driver")

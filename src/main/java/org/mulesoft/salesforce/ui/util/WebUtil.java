@@ -1,6 +1,7 @@
-package org.mulesoft.salesforce.ui.automation;
+package org.mulesoft.salesforce.ui.util;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class WebUtil {
 
@@ -10,5 +11,10 @@ public class WebUtil {
 
     public static void clickButton(WebElement clickable) {
         clickable.click();
+    }
+
+    public static void selectOptionFromSelectBox(WebElement selectBox, String selection){
+        Select select = new Select(selectBox);
+        select.selectByVisibleText(selection);
     }
 }

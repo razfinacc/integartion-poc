@@ -31,4 +31,5 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
   Scenario: Browser automation
     Given open browser with url "https://wb--cptechup.my.salesforce.com/"
     And login with "fatima.maniyar@mulesoft.com.cptechup" and "Climacool1610@!"
+    And login to workbench with environment selection as "Sandbox"
     Then quit driver

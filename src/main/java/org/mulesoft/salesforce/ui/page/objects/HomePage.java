@@ -1,6 +1,6 @@
-package org.mulesoft.salesforce.ui.automation.page.objects;
+package org.mulesoft.salesforce.ui.page.objects;
 
-import org.mulesoft.salesforce.ui.automation.WebUtil;
+import org.mulesoft.salesforce.ui.util.WebUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
