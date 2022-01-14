@@ -12,6 +12,14 @@ import org.mulesoft.salesforce.ui.page.objects.workbench.WorkbenchBulkApiJobStat
 import org.mulesoft.salesforce.ui.page.objects.workbench.WorkbenchHomePage;
 import org.mulesoft.salesforce.ui.page.objects.workbench.WorkbenchSoqlQueryPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+
+import java.io.IOException;
+
+import static org.mulesoft.salesforce.ui.util.TestResult.PASS;
+import static org.mulesoft.salesforce.ui.util.TestResult.EXCEPTION;
+import static org.mulesoft.salesforce.ui.util.WebUtil.takeScreenshot;
+import static org.mulesoft.salesforce.ui.util.WebUtil.waitInSeconds;
 
 @Slf4j
 public class StepDefinitions {
@@ -25,58 +33,85 @@ public class StepDefinitions {
     private WorkbenchBulkApiJobStatus workbenchBulkApiJobStatus;
 
     @Given("open browser with url {string}")
-    public void openBrowserWithUrl(String url) {
-        browser = Driver.getWebDriver();
-        browser.get(url);
-        browser.manage().window().maximize();
-        loginPage = new LoginPage(browser);
+    public void openBrowserWithUrl(String url) throws IOException {
+        try {
+            browser = Driver.getWebDriver();
+            browser.get(url);
+            browser.manage().window().maximize();
+            loginPage = new LoginPage(browser);
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION, "open_browser_fail.png");
+        }
     }
 
     @And("login with {string} and {string}")
-    public void loginToSaleForce(String uName, String pswd) throws InterruptedException {
-        loginPage.enterUserName(uName);
-        Thread.sleep(2000);
-        loginPage.enterPassword(pswd);
-        Thread.sleep(2000);
-        loginPage.clickLogin();
-        Thread.sleep(30000);
-        verificationPage = new VerificationPage(browser);
-        verificationPage.clickVerify();
-        Thread.sleep(10000);
-        /*homePage = new HomePage(browser);
-        homePage.clickForecasts();
-        Thread.sleep(60000);*/
+    public void loginToSaleForce(String uName, String pswd) throws IOException {
+        try {
+            loginPage.enterUserName(uName);
+            waitInSeconds(2000);
+            loginPage.enterPassword(pswd);
+            waitInSeconds(2000);
+            takeScreenshot(browser, PASS, "login_page.png");
+            loginPage.clickLogin();
+            waitInSeconds(30000);
+            verificationPage = new VerificationPage(browser);
+            takeScreenshot(browser, PASS, "verification_page.png");
+            verificationPage.clickVerify();
+            waitInSeconds(10000);
+            /*homePage = new HomePage(browser);
+            homePage.clickForecasts();
+            Thread.sleep(60000);*/
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION,"login_to_salesforce_fail.png");
+        }
     }
 
     @And("login to workbench with url {string}")
-    public void loginToWorkbench(String url) throws InterruptedException {
-        browser.get(url);
-        Thread.sleep(10000);
+    public void loginToWorkbench(String url) throws IOException {
+        try {
+            browser.switchTo().newWindow(WindowType.TAB);
+            browser.get(url);
+            waitInSeconds(10000);
+            takeScreenshot(browser, PASS, "workbench_home_page.png");
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION, "login_to_workbench_fail.png");
+        }
     }
 
     @And("execute query {string} in {string} environment")
-    public void executeQuery(String query, String envSelection) throws InterruptedException {
-        workbenchHomePage = new WorkbenchHomePage(browser);
-        workbenchHomePage.selectEnvironment(envSelection);
-        Thread.sleep(2000);
-        workbenchHomePage.checkTermsAndConditions();
-        Thread.sleep(2000);
-        workbenchHomePage.clickLoginWithSalesforceButton();
-        Thread.sleep(10000);
-        workbenchSoqlQueryPage = new WorkbenchSoqlQueryPage(browser);
-        workbenchSoqlQueryPage.clickExportCsvRadioButton();
-        Thread.sleep(2000);
-        workbenchSoqlQueryPage.enterQueryInTextarea(query);
-        Thread.sleep(2000);
-        workbenchSoqlQueryPage.clickQueryButton();
-        Thread.sleep(10000);
+    public void executeQuery(String query, String envSelection) throws IOException {
+        try {
+            workbenchHomePage = new WorkbenchHomePage(browser);
+            workbenchHomePage.selectEnvironment(envSelection);
+            waitInSeconds(2000);
+            workbenchHomePage.checkTermsAndConditions();
+            waitInSeconds(2000);
+            takeScreenshot(browser, PASS, "workbench_home_page.png");
+            workbenchHomePage.clickLoginWithSalesforceButton();
+            waitInSeconds(10000);
+            workbenchSoqlQueryPage = new WorkbenchSoqlQueryPage(browser);
+            workbenchSoqlQueryPage.clickExportCsvRadioButton();
+            waitInSeconds(2000);
+            workbenchSoqlQueryPage.enterQueryInTextarea(query);
+            waitInSeconds(2000);
+            takeScreenshot(browser, PASS, "workbench_query_page.png");
+            workbenchSoqlQueryPage.clickQueryButton();
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION, "execute_query_fail.png");
+        }
     }
 
     @And("download query result")
-    public void downloadQueryResult() throws InterruptedException {
-        workbenchBulkApiJobStatus = new WorkbenchBulkApiJobStatus(browser);
-        workbenchBulkApiJobStatus.downloadQueryReport();
-        Thread.sleep(5000);
+    public void downloadQueryResult() throws IOException {
+        try {
+            workbenchBulkApiJobStatus = new WorkbenchBulkApiJobStatus(browser);
+            takeScreenshot(browser, PASS, "workbench_query_result_page.png");
+            workbenchBulkApiJobStatus.downloadQueryReport();
+            waitInSeconds(5000);
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION, "download_query_result_fail.png");
+        }
+
     }
 
     @Then("quit driver")
