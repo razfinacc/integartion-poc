@@ -35,13 +35,13 @@ public class WebUtil {
         File filePath = new File(Util.properties.getProperty("screenshots_path"));
         switch (result) {
             case PASS:
-                filePath = new File(filePath + "/pass");
+                filePath = new File(filePath + "/pass/");
                 break;
             case FAIL:
-                filePath = new File(filePath + "/fail");
+                filePath = new File(filePath + "/fail/");
                 break;
             case EXCEPTION:
-                filePath = new File(filePath + "/exception");
+                filePath = new File(filePath + "/exception/");
                 break;
         }
         FileHandler.copy(src, new File(filePath + screencastName));
