@@ -36,5 +36,5 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
     And download query result
     Then quit driver
     Examples:
-      | uName                                | pswd            | envSelection | query |
-      | fatima.maniyar@mulesoft.com.cptechup | Climacool1610@! | Sandbox      |       |
+      | uName                                | pswd            | envSelection | query                                                                                                                                                                                                                                                                   |
+      | XXX | XXX | Sandbox      | SELECT CP_Contract__c, Forecast_Currency__c , CP_Property_Code__c, CP_Product_Type__c, Retailer__c, Revenue_Type__c, Royalty_Rate__c, Q1__c,Q2__c,Q3__c,Q4__c , Total_Amount__c, CreatedDate, LastModifiedDate FROM CP_Forecast_Item__c WHERE  id= 'a7802000000995gAAA' |
