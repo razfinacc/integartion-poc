@@ -32,16 +32,16 @@ public class WebUtil {
 
     public static void takeScreenshot(WebDriver driver, TestResult result, String screencastName) throws IOException {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File filePath = new File("");
+        File filePath = new File(Util.properties.getProperty("screenshots_path"));
         switch (result) {
             case PASS:
-                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/pass"));
+                filePath = new File(filePath + "/pass");
                 break;
             case FAIL:
-                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/fail"));
+                filePath = new File(filePath + "/fail");
                 break;
             case EXCEPTION:
-                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/exception"));
+                filePath = new File(filePath + "/exception");
                 break;
         }
         FileHandler.copy(src, new File(filePath + screencastName));
