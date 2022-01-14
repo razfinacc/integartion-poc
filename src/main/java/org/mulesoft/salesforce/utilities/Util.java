@@ -2,6 +2,7 @@ package org.mulesoft.salesforce.utilities;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -19,5 +20,11 @@ public class Util {
             log.error("Unable to read from PROPERTIES file: ", e);
         }
         return properties;
+    }
+
+    public static File createDirectoryIfNotExists(File filePath) {
+        if (!filePath.exists())
+            filePath.mkdirs();
+        return filePath;
     }
 }

@@ -1,5 +1,6 @@
 package org.mulesoft.salesforce.ui.util;
 
+import org.mulesoft.salesforce.utilities.Util;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class WebUtil {
         clickable.click();
     }
 
-    public static void selectOptionFromSelectBox(WebElement selectBox, String selection){
+    public static void selectOptionFromSelectBox(WebElement selectBox, String selection) {
         Select select = new Select(selectBox);
         select.selectByVisibleText(selection);
     }
@@ -31,16 +32,18 @@ public class WebUtil {
 
     public static void takeScreenshot(WebDriver driver, TestResult result, String screencastName) throws IOException {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        switch (result){
+        File filePath = new File("");
+        switch (result) {
             case PASS:
-                FileHandler.copy(src, new File("src/target/screenshots/pass" + screencastName));
+                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/pass"));
                 break;
             case FAIL:
-                FileHandler.copy(src, new File("src/target/screenshots/fail" + screencastName));
+                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/fail"));
                 break;
             case EXCEPTION:
-                FileHandler.copy(src, new File("src/target/screenshots/exception" + screencastName));
+                filePath = Util.createDirectoryIfNotExists(new File("src/target/screenshots/exception"));
                 break;
         }
+        FileHandler.copy(src, new File(filePath + screencastName));
     }
 }
