@@ -1,11 +1,11 @@
 package org.mulesoft.salesforce.ui.util;
 
+import org.apache.commons.io.FileUtils;
 import org.mulesoft.salesforce.utilities.Util;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
@@ -44,6 +44,6 @@ public class WebUtil {
                 filePath = new File(Util.properties.getProperty("screenshots_path") + "/exception/");
                 break;
         }
-        FileHandler.copy(src, new File(filePath + screencastName));
+        FileUtils.copyFileToDirectory(src, filePath);
     }
 }
