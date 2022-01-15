@@ -23,18 +23,19 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
     And print CP_Forecast__c.Mulesoft_Processed_On__c
     And print CP_Forecast__c.Mulesoft_Processed_Success__c
 
-  @SmokeApiTest
+  @Database @SmokeApiTest
   Scenario: Connect to FTP to read database data
     Given read database data
 
-  @BrowserAutomation
+  @BrowserAutomation @SmokeApiTest
   Scenario Outline: Browser automation
     Given open browser with url "https://wb--cptechup.my.salesforce.com/"
     And login with "<uName>" and "<pswd>"
-    And login to workbench with url "https://workbench.developerforce.com/query.php"
-    And execute query "<query>" in "<envSelection>" environment
-    And download query result
+    And navigate to forecast page with id "<url>" "<forecastId>"
+#    And login to workbench with url "https://workbench.developerforce.com/query.php"
+#    And execute query "<query>" in "<envSelection>" environment
+#    And download query result
     Then quit driver
     Examples:
-      | uName                                | pswd            | envSelection | query                                                                                                                                                                                                                                                                   |
-      | XXX | XXX | Sandbox      | SELECT CP_Contract__c, Forecast_Currency__c , CP_Property_Code__c, CP_Product_Type__c, Retailer__c, Revenue_Type__c, Royalty_Rate__c, Q1__c,Q2__c,Q3__c,Q4__c , Total_Amount__c, CreatedDate, LastModifiedDate FROM CP_Forecast_Item__c WHERE  id= 'a7802000000995gAAA' |
+      | url                                     | uName                                | pswd            | forecastId         | envSelection | query                                                                                                                                                                                                                                                                   |
+      | https://wb--cptechup.my.salesforce.com/ | fatima.maniyar@mulesoft.com.cptechup | Climacool1610@! | a7802000000995gAAA | Sandbox      | SELECT CP_Contract__c, Forecast_Currency__c , CP_Property_Code__c, CP_Product_Type__c, Retailer__c, Revenue_Type__c, Royalty_Rate__c, Q1__c,Q2__c,Q3__c,Q4__c , Total_Amount__c, CreatedDate, LastModifiedDate FROM CP_Forecast_Item__c WHERE  id= 'a7802000000995gAAA' |

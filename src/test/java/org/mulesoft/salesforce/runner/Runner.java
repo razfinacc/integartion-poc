@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty", "json:target/json.json", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",},
-        tags = "@BrowserAutomation",
+        tags = "@Database",
         features = {"classpath:features"},
         glue = {"org.mulesoft.salesforce.stepdefinitions"}
 )

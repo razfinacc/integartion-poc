@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import lombok.extern.slf4j.Slf4j;
 import org.mulesoft.salesforce.ui.automation.driver.Driver;
 import org.mulesoft.salesforce.ui.automation.page.objects.LoginPage;
+import org.mulesoft.salesforce.ui.page.objects.ForecastPage;
 import org.mulesoft.salesforce.ui.page.objects.HomePage;
 import org.mulesoft.salesforce.ui.page.objects.VerificationPage;
 import org.mulesoft.salesforce.ui.page.objects.workbench.WorkbenchBulkApiJobStatus;
@@ -31,6 +32,7 @@ public class StepDefinitions {
     private WorkbenchHomePage workbenchHomePage;
     private WorkbenchSoqlQueryPage workbenchSoqlQueryPage;
     private WorkbenchBulkApiJobStatus workbenchBulkApiJobStatus;
+    private ForecastPage forecastPage;
 
     @Given("open browser with url {string}")
     public void openBrowserWithUrl(String url) throws IOException {
@@ -62,7 +64,21 @@ public class StepDefinitions {
             homePage.clickForecasts();
             Thread.sleep(60000);*/
         } catch (Exception e) {
-            takeScreenshot(browser, EXCEPTION,"login_to_salesforce_fail.png");
+            takeScreenshot(browser, EXCEPTION, "login_to_salesforce_fail.png");
+        }
+    }
+
+    @And("navigate to forecast page with id {string} {string}")
+    public void navigateToForecastPage(String url, String forecastId) throws IOException {
+        try {
+            browser.get(url + forecastId);
+            waitInSeconds(10000);
+            forecastPage = new ForecastPage(browser);
+            forecastPage.clickExportButton();
+            waitInSeconds(10000);
+
+        } catch (Exception e) {
+            takeScreenshot(browser, EXCEPTION, "open_browser_fail.png");
         }
     }
 

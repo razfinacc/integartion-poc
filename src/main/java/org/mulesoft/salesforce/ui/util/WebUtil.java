@@ -1,5 +1,7 @@
 package org.mulesoft.salesforce.ui.util;
 
+import com.aventstack.extentreports.reporter.FileUtil;
+import org.apache.commons.io.FileUtils;
 import org.mulesoft.salesforce.utilities.Util;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WebUtil {
+private static int screencastCounter = 0;
 
     public static void enterTextIntoTextBox(WebElement textBox, String textToBeEntered) {
         textBox.sendKeys(textToBeEntered);
@@ -32,18 +35,10 @@ public class WebUtil {
 
     public static void takeScreenshot(WebDriver driver, TestResult result, String screencastName) throws IOException {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File filePath = new File("");
-        switch (result) {
-            case PASS:
-                filePath = new File(Util.properties.getProperty("screenshots_path") + "/pass/");
-                break;
-            case FAIL:
-                filePath = new File(Util.properties.getProperty("screenshots_path") + "/fail/");
-                break;
-            case EXCEPTION:
-                filePath = new File(Util.properties.getProperty("screenshots_path") + "/exception/");
-                break;
-        }
-        FileHandler.copy(src, new File(filePath + screencastName));
+        String path = Util.properties.getProperty("screenshots_path");
+        FileUtils.copyFileToDirectory(src, new File(path+screencastName+"_"+screencastCounter) );
+        screencastCounter++;
+
+
     }
 }
