@@ -20,6 +20,7 @@ public class ForecastPage {
     }
 
     public void clickExportButton() {
-        WebUtil.clickButton(exportButton);
+        boolean result = WebUtil.clickButton(exportButton);
+        WebUtil.assertTrue(result, "Unable to click export button");
     }
 }

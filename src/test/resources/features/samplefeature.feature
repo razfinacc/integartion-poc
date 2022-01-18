@@ -23,18 +23,18 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
     And print CP_Forecast__c.Mulesoft_Processed_On__c
     And print CP_Forecast__c.Mulesoft_Processed_Success__c
 
-  @Database @SmokeApiTest
+  @Database@SmokeApiTest
   Scenario: Connect to FTP to read database data
     Given read database data
 
   @BrowserAutomation @SmokeApiTest
   Scenario Outline: Browser automation
-    Given open browser with url "https://wb--cptechup.my.salesforce.com/"
+    Given open browser with url "<url>"
     And login with "<uName>" and "<pswd>"
     And navigate to forecast page with id "<url>" "<forecastId>"
-#    And login to workbench with url "https://workbench.developerforce.com/query.php"
-#    And execute query "<query>" in "<envSelection>" environment
-#    And download query result
+    And login to workbench with url "https://workbench.developerforce.com/query.php"
+    And execute query "<query>" in "<envSelection>" environment
+    And download query result
     Then quit driver
     Examples:
       | url                                     | uName                                | pswd            | forecastId         | envSelection | query                                                                                                                                                                                                                                                                   |

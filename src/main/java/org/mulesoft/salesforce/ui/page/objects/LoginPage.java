@@ -26,14 +26,17 @@ public class LoginPage {
     }
 
     public void enterUserName(String uName) {
-        WebUtil.enterTextIntoTextBox(userName, uName);
+        boolean result = WebUtil.enterTextIntoTextBox(userName, uName);
+        WebUtil.assertTrue(result, "Unable to enter username");
     }
 
     public void enterPassword(String pswd) {
-        WebUtil.enterTextIntoTextBox(password, pswd);
+        boolean result = WebUtil.enterTextIntoTextBox(password, pswd);
+        WebUtil.assertTrue(result, "Unable to enter password");
     }
 
     public void clickLogin() {
-        WebUtil.clickButton(loginButton);
+        boolean result = WebUtil.clickButton(loginButton);
+        WebUtil.assertTrue(result, "Unable to click login button");
     }
 }

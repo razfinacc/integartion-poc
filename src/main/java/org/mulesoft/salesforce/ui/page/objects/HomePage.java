@@ -20,6 +20,7 @@ public class HomePage {
     }
 
     public void clickForecasts() {
-        WebUtil.clickButton(forecastSpan);
+        boolean result = WebUtil.clickButton(forecastSpan);
+        WebUtil.assertTrue(result, "Unable to click forecast");
     }
 }

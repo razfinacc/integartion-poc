@@ -26,14 +26,17 @@ public class WorkbenchSoqlQueryPage {
     }
 
     public void clickExportCsvRadioButton() {
-        WebUtil.clickButton(exportCsvRadioButton);
+        boolean result = WebUtil.clickButton(exportCsvRadioButton);
+        WebUtil.assertTrue(result, "Unable to click bulk csv radio button ");
     }
 
     public void enterQueryInTextarea(String query) {
-        WebUtil.enterTextIntoTextBox(soqlQueryTextarea, query);
+        boolean result = WebUtil.enterTextIntoTextBox(soqlQueryTextarea, query);
+        WebUtil.assertTrue(result, "Unable to enter query in text area ");
     }
 
     public void clickQueryButton() {
-        WebUtil.clickButton(queryButton);
+        boolean result = WebUtil.clickButton(queryButton);
+        WebUtil.assertTrue(result, "Unable to click query button ");
     }
 }

@@ -20,6 +20,8 @@ public class WorkbenchBulkApiJobStatus {
     }
 
     public void downloadQueryReport(){
-        WebUtil.clickButton(downloadImage);
+        boolean result = WebUtil.clickButton(downloadImage);
+        WebUtil.assertTrue(result, "Unable to download file");
+
     }
 }

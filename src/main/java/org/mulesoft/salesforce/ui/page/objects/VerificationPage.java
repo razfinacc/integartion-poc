@@ -24,6 +24,8 @@ public class VerificationPage {
     }
 
     public void clickVerify() {
-        WebUtil.clickButton(verifyButton);
+        boolean result = WebUtil.clickButton(verifyButton);
+        WebUtil.assertTrue(result, "Unable to click verify button");
+
     }
 }

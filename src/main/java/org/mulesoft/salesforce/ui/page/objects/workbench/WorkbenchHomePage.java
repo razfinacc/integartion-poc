@@ -26,14 +26,17 @@ public class WorkbenchHomePage {
     }
 
     public void selectEnvironment(String selection) {
-        WebUtil.selectOptionFromSelectBox(environmentSelectBox, selection);
+        boolean result = WebUtil.selectOptionFromSelectBox(environmentSelectBox, selection);
+        WebUtil.assertTrue(result, "Unable to select " + selection + " env");
     }
 
     public void checkTermsAndConditions() {
-        WebUtil.clickButton(termsAndConditionsCheckBox);
+        boolean result = WebUtil.clickButton(termsAndConditionsCheckBox);
+        WebUtil.assertTrue(result, "Unable to check terms and conditions ");
     }
 
     public void clickLoginWithSalesforceButton() {
-        WebUtil.clickButton(loginWithSalesforceButton);
+        boolean result = WebUtil.clickButton(loginWithSalesforceButton);
+        WebUtil.assertTrue(result, "Unable to click on workbench login button");
     }
 }
