@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.stepdefinitions.ui;
+package org.mulesoft.salesforce.ui.stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -19,7 +19,6 @@ import java.io.IOException;
 
 import static org.mulesoft.salesforce.ui.util.TestResult.PASS;
 import static org.mulesoft.salesforce.ui.util.WebUtil.takeScreenshot;
-import static org.mulesoft.salesforce.ui.util.WebUtil.waitInSeconds;
 
 @Slf4j
 public class StepDefinitions {
@@ -35,7 +34,7 @@ public class StepDefinitions {
 
     @Given("open browser with url {string}")
     public void openBrowserWithUrl(String url) throws IOException {
-        browser = Browser.getWebDriver();
+        browser = Browser.getWebBrowser();
         browser.get(url);
         browser.manage().window().maximize();
         loginPage = new LoginPage(browser);
@@ -44,16 +43,12 @@ public class StepDefinitions {
     @And("login with {string} and {string}")
     public void loginToSaleForce(String uName, String pswd) throws IOException, InterruptedException {
         loginPage.enterUserName(uName);
-        waitInSeconds(2000);
         loginPage.enterPassword(pswd);
-        waitInSeconds(2000);
-        takeScreenshot(browser, PASS, "login_page.png");
+        takeScreenshot(browser, PASS, "login_page");
         loginPage.clickLogin();
-        waitInSeconds(30000);
         verificationPage = new VerificationPage(browser);
-        takeScreenshot(browser, PASS, "verification_page.png");
+        takeScreenshot(browser, PASS, "verification_page");
         verificationPage.clickVerify();
-        waitInSeconds(10000);
             /*homePage = new HomePage(browser);
             homePage.clickForecasts();
             Thread.sleep(60000);*/
@@ -63,10 +58,8 @@ public class StepDefinitions {
     public void navigateToForecastPage(String url, String forecastId) throws IOException, InterruptedException {
 
         browser.get(url + forecastId);
-        waitInSeconds(10000);
         forecastPage = new ForecastPage(browser);
         forecastPage.clickExportButton();
-        waitInSeconds(10000);
 
     }
 
@@ -74,35 +67,28 @@ public class StepDefinitions {
     public void loginToWorkbench(String url) throws IOException, InterruptedException {
         browser.switchTo().newWindow(WindowType.TAB);
         browser.get(url);
-        waitInSeconds(10000);
-        takeScreenshot(browser, PASS, "workbench_home_page.png");
+        takeScreenshot(browser, PASS, "workbench_home_page");
     }
 
     @And("execute query {string} in {string} environment")
     public void executeQuery(String query, String envSelection) throws IOException, InterruptedException {
         workbenchHomePage = new WorkbenchHomePage(browser);
         workbenchHomePage.selectEnvironment(envSelection);
-        waitInSeconds(2000);
         workbenchHomePage.checkTermsAndConditions();
-        waitInSeconds(2000);
-        takeScreenshot(browser, PASS, "workbench_home_page.png");
+        takeScreenshot(browser, PASS, "workbench_home_page");
         workbenchHomePage.clickLoginWithSalesforceButton();
-        waitInSeconds(10000);
         workbenchSoqlQueryPage = new WorkbenchSoqlQueryPage(browser);
         workbenchSoqlQueryPage.clickExportCsvRadioButton();
-        waitInSeconds(2000);
         workbenchSoqlQueryPage.enterQueryInTextarea(query);
-        waitInSeconds(2000);
-        takeScreenshot(browser, PASS, "workbench_query_page.png");
+        takeScreenshot(browser, PASS, "workbench_query_page");
         workbenchSoqlQueryPage.clickQueryButton();
     }
 
     @And("download query result")
     public void downloadQueryResult() throws IOException, InterruptedException {
         workbenchBulkApiJobStatus = new WorkbenchBulkApiJobStatus(browser);
-        takeScreenshot(browser, PASS, "workbench_query_result_page.png");
+        takeScreenshot(browser, PASS, "workbench_query_result_page");
         workbenchBulkApiJobStatus.downloadQueryReport();
-        waitInSeconds(5000);
     }
 
     @Then("quit driver")

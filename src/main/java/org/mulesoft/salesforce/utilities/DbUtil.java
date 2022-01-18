@@ -1,7 +1,7 @@
 package org.mulesoft.salesforce.utilities;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mulesoft.salesforce.model.Person;
+import org.mulesoft.salesforce.api.model.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

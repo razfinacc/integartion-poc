@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "json:target/json.json", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",},
         tags = "@BrowserAutomation",
         features = {"classpath:features"},
-        glue = {"org.mulesoft.salesforce.stepdefinitions"}
+        glue = {"org.mulesoft.salesforce"}
 )
 public class Runner {
 }

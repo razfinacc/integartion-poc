@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.mulesoft.salesforce.model.SheetData;
+import org.mulesoft.salesforce.api.model.SheetData;
 
 import java.io.File;
 import java.io.FileInputStream;
