@@ -70,5 +70,6 @@ public class WebUtil {
 
     public static void assertFalse(boolean result, String message) {
         Assert.assertTrue(message, result);
+        FileUtils.copyFileToDirectory(src, filePath);
     }
 }
