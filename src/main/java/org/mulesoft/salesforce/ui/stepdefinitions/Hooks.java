@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.stepdefinitions;
+package org.mulesoft.salesforce.ui.stepdefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,9 +16,7 @@ public class Hooks {
 
     @Before
     public void createScreenshotsDirectory() {
-        Util.createDirectoryIfNotExists(new File(Util.properties.getProperty("screenshots_path") + "pass"));
-        Util.createDirectoryIfNotExists(new File(Util.properties.getProperty("screenshots_path") + "fail"));
-        Util.createDirectoryIfNotExists(new File(Util.properties.getProperty("screenshots_path") + "exception"));
+        Util.createDirectoryIfNotExists(new File(Util.properties.getProperty("screenshots_path")));
     }
 
     @After

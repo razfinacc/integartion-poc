@@ -2,7 +2,7 @@ package org.mulesoft.salesforce.utilities;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.mulesoft.salesforce.model.SheetData;
+import org.mulesoft.salesforce.api.model.SheetData;
 
 import java.io.File;
 import java.io.IOException;

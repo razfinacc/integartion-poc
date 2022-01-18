@@ -1,11 +1,11 @@
-package org.mulesoft.salesforce.stepdefinitions.api;
+package org.mulesoft.salesforce.api.stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
+import org.mulesoft.salesforce.api.model.Person;
 import org.mulesoft.salesforce.session.Session;
-import org.mulesoft.salesforce.model.Person;
-import org.mulesoft.salesforce.model.SheetData;
+import org.mulesoft.salesforce.api.model.SheetData;
 import org.mulesoft.salesforce.utilities.CsvUtil;
 import org.mulesoft.salesforce.utilities.DbUtil;
 import org.mulesoft.salesforce.utilities.ExcelUtil;

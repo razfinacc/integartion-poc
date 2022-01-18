@@ -1,4 +1,4 @@
-package org.mulesoft.salesforce.model;
+package org.mulesoft.salesforce.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
