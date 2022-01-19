@@ -5,20 +5,28 @@ import org.junit.Assert;
 import org.mulesoft.salesforce.ui.driver.Browser;
 import org.mulesoft.salesforce.utilities.ReportUtil;
 import org.mulesoft.salesforce.utilities.Util;
-import org.openqa.selenium.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class WebUtil {
 
     private static int waitForSeconds = 60;
     private static int screencastCounter = 0;
 
-    public static void waitForElementToBeLoaded(WebElement webElement){
+    public static void waitForElementToBeLoaded(WebElement webElement) {
         WebDriverWait webDriverWait = new WebDriverWait(Browser.getWebBrowser(), Duration.ofSeconds(waitForSeconds));
         webDriverWait.until(ExpectedConditions.or(
                 ExpectedConditions.elementToBeClickable(webElement),
@@ -83,5 +91,15 @@ public class WebUtil {
 
     public static void assertFalse(boolean result, String message) {
         Assert.assertTrue(message, result);
+    }
+
+    public static void copyFile(Path src, Path dest) throws IOException {
+        Optional<Path> lastFilePath = Files.list(src)
+                .filter(it -> !Files.isDirectory(it))
+                .filter(it -> it.getFileName().toString().contains("ForecastingGridData"))
+                .max(Comparator.comparingLong(it -> it.toFile().lastModified()));
+        if (lastFilePath.isPresent()) {
+            FileUtils.copyFileToDirectory(lastFilePath.get().toFile(), new File(String.valueOf(dest)));
+        }
     }
 }

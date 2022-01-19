@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class SheetData {
 
+    private String errors;
     private String contractNo;
     private String forecastCurrency;
     private String propertyDescription;

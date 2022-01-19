@@ -47,48 +47,51 @@ public class CsvUtil {
                     for (int index = 0; index < rowValues.length; index++) {
                         switch (index) {
                             case 0:
-                                sheetData.setContractNo(getStringCellData(rowValues[index]));
+                                sheetData.setErrors(getStringCellData(rowValues[index]));
                                 break;
                             case 1:
-                                sheetData.setForecastCurrency(getStringCellData(rowValues[index]));
+                                sheetData.setContractNo(getStringCellData(rowValues[index]));
                                 break;
                             case 2:
-                                sheetData.setPropertyDescription(getStringCellData(rowValues[index]));
+                                sheetData.setForecastCurrency(getStringCellData(rowValues[index]));
                                 break;
                             case 3:
-                                sheetData.setProductTypeDescription(getStringCellData(rowValues[index]));
+                                sheetData.setPropertyDescription(getStringCellData(rowValues[index]));
                                 break;
                             case 4:
-                                sheetData.setTerritory(getStringCellData(rowValues[index]));
+                                sheetData.setProductTypeDescription(getStringCellData(rowValues[index]));
                                 break;
                             case 5:
-                                sheetData.setRetailerDescription(getStringCellData(rowValues[index]));
+                                sheetData.setTerritory(getStringCellData(rowValues[index]));
                                 break;
                             case 6:
-                                sheetData.setRevenueType(getStringCellData(rowValues[index]));
+                                sheetData.setRetailerDescription(getStringCellData(rowValues[index]));
                                 break;
                             case 7:
-                                sheetData.setRoyaltyRate(getNumericCellData(rowValues[index]));
+                                sheetData.setRevenueType(getStringCellData(rowValues[index]));
                                 break;
                             case 8:
-                                sheetData.setQ1(getStringCellData(rowValues[index]));
+                                sheetData.setRoyaltyRate(getNumericCellData(rowValues[index]));
                                 break;
                             case 9:
-                                sheetData.setQ2(getStringCellData(rowValues[index]));
+                                sheetData.setQ1(getStringCellData(rowValues[index]));
                                 break;
                             case 10:
-                                sheetData.setQ3(getStringCellData(rowValues[index]));
+                                sheetData.setQ2(getStringCellData(rowValues[index]));
                                 break;
                             case 11:
-                                sheetData.setQ4(getStringCellData(rowValues[index]));
+                                sheetData.setQ3(getStringCellData(rowValues[index]));
                                 break;
                             case 12:
-                                sheetData.setTotalAmount(getNumericCellData(rowValues[index]));
+                                sheetData.setQ4(getStringCellData(rowValues[index]));
                                 break;
                             case 13:
-                                sheetData.setCreatedDate(getStringCellData(rowValues[index]));
+                                sheetData.setTotalAmount(getNumericCellData(rowValues[index]));
                                 break;
                             case 14:
+                                sheetData.setCreatedDate(getStringCellData(rowValues[index]));
+                                break;
+                            case 15:
                                 sheetData.setLastModifiedDate(getStringCellData(rowValues[index]));
                                 break;
                         }
