@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class WorkbenchBulkApiJobStatus {
+public class WorkbenchBulkApiJobStatus extends WorkbenchMenuBar {
 
     private WebDriver driver;
 
@@ -15,6 +15,7 @@ public class WorkbenchBulkApiJobStatus {
     private WebElement downloadImage;
 
     public WorkbenchBulkApiJobStatus(WebDriver driver){
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -22,5 +23,9 @@ public class WorkbenchBulkApiJobStatus {
     public void downloadQueryReport(){
         boolean result = WebUtil.clickButton(downloadImage);
         WebUtil.assertTrue(result, "Unable to download file");
+    }
+
+    public void navigateToSoqlQueryPage(){
+        super.navigateToSoqlQuery();
     }
 }

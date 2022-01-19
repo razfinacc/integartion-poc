@@ -78,8 +78,8 @@ public class StepDefinitions {
         waitInSeconds(5000);
     }
 
-    @And("navigate to workbench query page")
-    public void navigateToWorkbenchQueryPage(String query, String envSelection) {
+    @And("navigate to workbench query page {string}")
+    public void navigateToWorkbenchQueryPage(String envSelection) {
         workbenchHomePage = new WorkbenchHomePage(browser);
         workbenchHomePage.selectEnvironment(envSelection);
         workbenchHomePage.checkTermsAndConditions();
@@ -89,8 +89,10 @@ public class StepDefinitions {
 
     @And("open workbench soql query page from menu bar")
     public void openWorkbenchQueryPageFromMenuBar() {
-        workbenchMenuBar = new WorkbenchMenuBar(browser);
-        workbenchMenuBar.navigateToSoqlQuery();
+        /*workbenchMenuBar = new WorkbenchMenuBar(browser);
+        workbenchMenuBar.navigateToSoqlQuery();*/
+
+        workbenchBulkApiJobStatus.navigateToSoqlQueryPage();
     }
 
     @And("execute query {string} in {string} environment")
