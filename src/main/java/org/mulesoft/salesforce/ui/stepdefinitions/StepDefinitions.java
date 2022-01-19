@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import static org.mulesoft.salesforce.ui.util.TestResult.PASS;
 import static org.mulesoft.salesforce.ui.util.WebUtil.takeScreenshot;
+import static org.mulesoft.salesforce.ui.util.WebUtil.waitInSeconds;
 
 @Slf4j
 public class StepDefinitions {
@@ -47,6 +48,7 @@ public class StepDefinitions {
         takeScreenshot(browser, PASS, "login_page");
         loginPage.clickLogin();
         verificationPage = new VerificationPage(browser);
+        waitInSeconds(20000);
         takeScreenshot(browser, PASS, "verification_page");
         verificationPage.clickVerify();
             /*homePage = new HomePage(browser);
@@ -59,7 +61,9 @@ public class StepDefinitions {
 
         browser.get(url + forecastId);
         forecastPage = new ForecastPage(browser);
+        waitInSeconds(15000);
         forecastPage.clickExportButton();
+        waitInSeconds(5000);
 
     }
 
@@ -67,7 +71,7 @@ public class StepDefinitions {
     public void loginToWorkbench(String url) throws IOException, InterruptedException {
         browser.switchTo().newWindow(WindowType.TAB);
         browser.get(url);
-        takeScreenshot(browser, PASS, "workbench_home_page");
+        waitInSeconds(5000);
     }
 
     @And("execute query {string} in {string} environment")
@@ -89,6 +93,7 @@ public class StepDefinitions {
         workbenchBulkApiJobStatus = new WorkbenchBulkApiJobStatus(browser);
         takeScreenshot(browser, PASS, "workbench_query_result_page");
         workbenchBulkApiJobStatus.downloadQueryReport();
+        waitInSeconds(10000);
     }
 
     @Then("quit driver")
