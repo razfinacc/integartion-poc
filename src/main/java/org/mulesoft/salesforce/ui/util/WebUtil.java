@@ -99,7 +99,7 @@ public class WebUtil {
                 .filter(it -> it.getFileName().toString().contains("ForecastingGridData"))
                 .max(Comparator.comparingLong(it -> it.toFile().lastModified()));
         if (lastFilePath.isPresent()) {
-            FileUtils.copyFileToDirectory(lastFilePath.get().toFile(), new File(String.valueOf(dest)));
+            FileUtils.copyFile(lastFilePath.get().toFile(), new File(String.valueOf(dest)));
         }
     }
 }

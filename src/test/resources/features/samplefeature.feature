@@ -6,7 +6,7 @@ Feature: Connect to FTP to read excel file and do bulk insertions into Salesforc
     And login with "<uName>" and "<pswd>"
     And navigate to forecast page with id "<url>" "<forecastId>"
     And login to workbench with url "https://workbench.developerforce.com/query.php"
-    And navigate to workbench query page
+    And navigate to workbench query page "<envSelection>"
     And execute query "<query1>" in "<envSelection>" environment
     And download query result
     And open workbench soql query page from menu bar
