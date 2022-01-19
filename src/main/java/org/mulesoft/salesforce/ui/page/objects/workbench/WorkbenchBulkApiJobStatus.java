@@ -22,6 +22,5 @@ public class WorkbenchBulkApiJobStatus {
     public void downloadQueryReport(){
         boolean result = WebUtil.clickButton(downloadImage);
         WebUtil.assertTrue(result, "Unable to download file");
-
     }
 }
